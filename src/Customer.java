@@ -23,8 +23,7 @@ public class Customer {
 			Rental each = (Rental) rentals.nextElement();
 
 			// determine amounts for each line
-			double thisAmount = each.charge();
-			totalAmount += thisAmount;
+			totalAmount += each.charge();
 
 			// add frequent renter points
 			frequentRenterPoints++;
@@ -33,7 +32,7 @@ public class Customer {
 				frequentRenterPoints++;
 
 			// show figures for this rental
-			result += "\t" + each.tape().movie().name() + "\t" + String.valueOf(thisAmount) + "\n";
+			result += "\t" + each.tape().movie().name() + "\t" + String.valueOf(each.charge()) + "\n";
 		}
 		// add footer lines
 		result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
