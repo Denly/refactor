@@ -14,24 +14,24 @@ public class Customer {
 	}
 
 	public double amountOf(Rental rental) {
-		double thisAmount = 0;
+		double result = 0;
 		switch (rental.tape().movie().priceCode()) {
 		case Movie.REGULAR:
-			thisAmount += 2;
+			result += 2;
 			if (rental.daysRented() > 2)
-				thisAmount += (rental.daysRented() - 2) * 1.5;
+				result += (rental.daysRented() - 2) * 1.5;
 			break;
 		case Movie.NEW_RELEASE:
-			thisAmount += rental.daysRented() * 3;
+			result += rental.daysRented() * 3;
 			break;
 		case Movie.CHILDRENS:
-			thisAmount += 1.5;
+			result += 1.5;
 			if (rental.daysRented() > 3)
-				thisAmount += (rental.daysRented() - 3) * 1.5;
+				result += (rental.daysRented() - 3) * 1.5;
 			break;
 
 		}
-		return thisAmount;
+		return result;
 	}
 
 	public String statement() {
