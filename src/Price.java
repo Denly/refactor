@@ -4,6 +4,10 @@ abstract class Price {
 	
 	abstract double charge(int daysRented);
 	
+	int frequentRenterPoints(int daysRented){
+		return 1;
+	}
+	
     static Price regular() {
         return _regular;
     }
