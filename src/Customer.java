@@ -45,21 +45,11 @@ public class Customer {
 		while (rentals.hasMoreElements()) {
 			Rental each = (Rental) rentals.nextElement();
 			// add frequent renter points
-			result += frequentRenterPointOf(each);
+			result += each.frequentRenterPoints();
 		}
 		return result;
 	} 
 	
-	public int frequentRenterPointOf(Rental rental) {
-		// add frequent renter points
-		int result = 1;
-		// add bonus for a two day new release rental
-		if ((rental.tape().movie().priceCode() == Movie.NEW_RELEASE) && rental.daysRented() > 1)
-			result++;
-		return result;
-
-	}
-
 	public void addRental(Rental arg) {
 		_rentals.addElement(arg);
 	}
