@@ -27,6 +27,7 @@ public class Customer {
 		return result;
 
 	}
+	
 	public double charge() {
 		double result = 0;
 		Enumeration<Rental> rentals = _rentals.elements();
