@@ -56,7 +56,7 @@ public class Customer {
 
 	public static void main(String[] args) {
 		Customer customer = new Customer("Alice");
-		Movie movie1 = new Movie("gone with wind", Movie.REGULAR);
+		Movie movie1 = Movie.newRegular("gone with wind");
 		Tape tape1 = new Tape("2323", movie1);
 		Rental rental1 = new Rental(tape1, 3);
 

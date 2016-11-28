@@ -1,18 +1,45 @@
 public class Movie {
 	public static final int  CHILDRENS = 2;
-    public static final int  REGULAR = 0;
-    public static final int  NEW_RELEASE = 1;
+	public static final int  REGULAR = 0;
+	public static final int  NEW_RELEASE = 1;
 
     private String _name;
-	private int _priceCode;
+	private Price _price;
 
-	public Movie(String name, int priceCode) {
+	private Movie(String name) {
 		_name = name;
-		_priceCode = priceCode;
 	}
+	
+	public static Movie newNewRelease(String name){
+        Movie result = new Movie (name);
+        result.beNewRelease();
+        return result;
+	}
+	public static Movie newRegular(String name){
+        Movie result = new Movie (name);
+        result.beRegular();
+        return result;
+	}
+	public static Movie newChildrens(String name) {
+        Movie result = new Movie (name);
+        result.beChildrens();
+        return result;
+	}
+	
+    public void beRegular() {
+        _price = Price.regular();
+    }
+
+    public void beNewRelease() {
+        _price = Price.newRelease();
+    }
+    
+    public void beChildrens() {
+    	_price = Price.childrens();
+    }
 
 	public int priceCode() {
-		return _priceCode;
+		return _price.priceCode();
 	}
 	
 	public String name()
@@ -43,7 +70,7 @@ public class Movie {
 	
 	public int frequentRenterPoints(int daysRented) {
 		// bonus for a two day new release rental
-		if ((_priceCode == Movie.NEW_RELEASE) && daysRented > 1) return 2;
+		if ((priceCode() == Movie.NEW_RELEASE) && daysRented > 1) return 2;
 		// usual renter points
 		else return 1;
 	}
