@@ -14,22 +14,16 @@ public class Customer {
 	}
 
 	public String statement() {
-		int frequentRenterPoints = 0;
 		Enumeration<Rental> rentals = _rentals.elements();
 		String result = "Rental Record for " + name() + "\n";
 		while (rentals.hasMoreElements()) {
 			Rental each = (Rental) rentals.nextElement();
-			// determine amounts for each line
-			
-			// add frequent renter points
-			frequentRenterPoints += frequentRenterPointOf(each);
-
 			// show figures for this rental
 			result += "\t" + each.tape().movie().name() + "\t" + String.valueOf(each.charge()) + "\n";
 		}
 		// add footer lines
 		result += "Amount owed is " + String.valueOf(charge()) + "\n";
-		result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
+		result += "You earned " + String.valueOf(frequentRenterPoints()) + " frequent renter points";
 		return result;
 
 	}
@@ -38,19 +32,30 @@ public class Customer {
 		Enumeration<Rental> rentals = _rentals.elements();
 		while (rentals.hasMoreElements()) {
 			Rental each = (Rental) rentals.nextElement();
+			// determine amounts for each line
 			result += each.charge();
 		}
 		return result;
 	}
 
+	public int frequentRenterPoints() {
+		int result = 0;
+		Enumeration<Rental> rentals = _rentals.elements();
+		while (rentals.hasMoreElements()) {
+			Rental each = (Rental) rentals.nextElement();
+			// add frequent renter points
+			result += frequentRenterPointOf(each);
+		}
+		return result;
+	} 
+	
 	public int frequentRenterPointOf(Rental rental) {
 		// add frequent renter points
-		int frequentRenterPoints = 1;
-
+		int result = 1;
 		// add bonus for a two day new release rental
 		if ((rental.tape().movie().priceCode() == Movie.NEW_RELEASE) && rental.daysRented() > 1)
-			frequentRenterPoints++;
-		return frequentRenterPoints;
+			result++;
+		return result;
 
 	}
 
