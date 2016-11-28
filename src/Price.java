@@ -2,6 +2,8 @@
 abstract class Price {
 	abstract int priceCode();
 	
+	abstract double charge(int daysRented);
+	
     static Price regular() {
         return _regular;
     }
